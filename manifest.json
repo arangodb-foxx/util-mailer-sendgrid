@@ -1,0 +1,35 @@
+{
+  "name": "mailer-sendgrid",
+  "author": "Alan Plum",
+  "version": "0.1",
+  "description": "Mailer task for Foxx using SendGrid.",
+
+  "exports": {
+    "mailer": "mailer.js"
+  },
+
+  "defaultDocument": "",
+
+  "lib": ".",
+
+  "configuration": {
+    "apiUser": {
+      "description": "Your SendGrid API user.",
+      "type": "string"
+    },
+    "apiKey": {
+      "description": "Your SendGrid API key.",
+      "type": "string"
+    },
+    "jobType": {
+      "description": "Name of the job type to register.",
+      "type": "string",
+      "default": "mailer.sendgrid"
+    },
+    "maxFailures": {
+      "description": "Maximum number of times to retry a job if it fails.",
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
