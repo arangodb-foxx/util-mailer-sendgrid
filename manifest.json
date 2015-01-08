@@ -1,8 +1,21 @@
 {
   "name": "mailer-sendgrid",
-  "author": "Alan Plum",
-  "version": "1.0.0",
   "description": "Mailer task for Foxx using SendGrid.",
+  "author": "ArangoDB GmbH",
+  "version": "1.0.0",
+  "license": "Apache License, Version 2.0",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arangodb/foxx-mailer-sendgrid.git"
+  },
+
+  "contributors": [
+    {
+      "name": "Alan Plum",
+      "email": "me@pluma.io"
+    }
+  ],
 
   "exports": {
     "mailer": "mailer.js"
