@@ -48,5 +48,5 @@ module.exports = function (data) {
       return textPart(boundary, data, name);
     }).join(NL);
   }).filter(Boolean).join(NL) + NL + '--' + boundary + '--';
-  return {payload: payload, boundary: boundary}
-}
+  return {payload: payload, boundary: boundary};
+};
