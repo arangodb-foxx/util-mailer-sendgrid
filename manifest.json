@@ -2,7 +2,7 @@
   "name": "mailer-sendgrid",
   "description": "Mailer task for Foxx using SendGrid.",
   "author": "ArangoDB GmbH",
-  "version": "2.0.0-dev",
+  "version": "2.0.0",
   "license": "Apache License, Version 2.0",
   "repository": {
     "type": "git",
