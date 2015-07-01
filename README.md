@@ -1,24 +1,34 @@
 # The SendGrid Mailer App
 
-The SendGrid mailer app provides a `Foxx.queues` job type for sending transactional emails with [SendGrid](https://sendgrid.com/).
+The SendGrid mailer app provides a Foxx script and `Foxx.queues` job type for sending transactional emails with [SendGrid](https://sendgrid.com/).
+
+**Note:** Version 2.0.0 and higher require ArangoDB 2.6 or later to work correctly.
 
 *Examples*
 
-```js
-var Foxx = require('org/arangodb/foxx')
-    queue = Foxx.queues.create('my-queue', 1);
+First add this app to your dependencies:
 
-queue.push('mailer.sendgrid', {
+```js
+{
+  ...
+  "dependencies": {
+    "mailer": "mailer-sendgrid:^2.0.0"
+  }
+  ...
+}
+```
+
+Once you've configured both apps correctly, you can use it like this:
+
+```js
+var Foxx = require('org/arangodb/foxx');
+var queue = Foxx.queues.get('default');
+
+queue.push(applicationContext.dependencies.mailer, {
     from: 'postmaster@initech.example',
     to: 'john.doe@employees.initech.example',
     subject: 'Termination',
     html: '<blink>YOU ARE FIRED!</blink>'
-});
-
-// or if you prefer not to hardcode the job type:
-
-queue.push(Foxx.requireApp('/sendgrid-mailer-mountpoint').mailer.jobType, {
-    // ...
 });
 ```
 
@@ -28,7 +38,6 @@ This app has the following configuration options:
 
 * *apiUser*: Your SendGrid API user. This is the same username used to log into your SendGrid account.
 * *apiKey*: Your SendGrid API key. This is the same password used to log into your SendGrid account.
-* *jobType* (optional): The name under which the mailer app's job type will be available. Default: *mailer.sendgrid*.
 * *maxFailures* (optional): The maximum number of times each job will be retried if it fails. Default: *0* (don't retry).
 
 ## Job Data
@@ -50,7 +59,7 @@ If you want to reference attachments in the message's html you can specify conte
 *Examples*
 
 ```js
-queue.push('mailer.mailgun', {
+queue.push(applicationContext.dependencies.mailer, {
     // ...
     html: '<a href="cid:ii_139db99fdb5c3704">hello world</a>',
     files: {
@@ -63,3 +72,7 @@ queue.push('mailer.mailgun', {
     }
 });
 ```
+
+## License
+
+This code is distributed under the [Apache License](http://www.apache.org/licenses/LICENSE-2.0) by ArangoDB GmbH.
